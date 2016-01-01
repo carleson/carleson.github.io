@@ -40,6 +40,16 @@
       <div class='item-container-footer'>
         Choose the app's background color. Used if High Contrast Mode is not selected. Note: Only available on Basalt watches that support many colors.
       </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Text Color
+          <input id='text_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        Choose the app's text color. Note: Only available on watches with support for colors.
+      </div>
     </div>
 
     <div class='item-container'>
@@ -90,11 +100,13 @@
   <script>
   function getConfigData() {
     var backgroundColorPicker = document.getElementById('background_color_picker');
+    var textColorPicker = document.getElementById('text_color_picker');
     var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
     var splashscreenCheckbox = document.getElementById('splashscreen_checkbox');
     var shakeCheckbox = document.getElementById('shake_checkbox');
     var options = {
       'background_color': backgroundColorPicker.value,
+      'text_color': textColorPicker.value,
       'high_contrast': highContrastCheckbox.checked,
       'splashscreen': splashscreenCheckbox.checked,
       'shake': shakeCheckbox.checked
@@ -102,6 +114,7 @@
 
     // Save for next launch
     localStorage['background_color'] = options['background_color'];
+    localStorage['text_color'] = options['text_color'];
     localStorage['high_contrast'] = options['high_contrast'];
     localStorage['splashscreen'] = options['splashscreen'];
     localStorage['shake'] = options['shake'];
@@ -133,6 +146,7 @@
 
   (function() {
     var backgroundColorPicker = document.getElementById('background_color_picker');
+    var textColorPicker = document.getElementById('text_color_picker');
     var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
     var splashscreenCheckbox = document.getElementById('splashscreen_checkbox');
     var shakeCheckbox = document.getElementById('shake_checkbox');
@@ -141,6 +155,7 @@
     if(localStorage['high_contrast']) {
       highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
       backgroundColorPicker.value = localStorage['background_color'];
+      textColorPicker.value = localStorage['text_color'];
     }
     
     if(localStorage['splashscreen']) {
